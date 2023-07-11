@@ -1,4 +1,4 @@
-// UMA ENTIDATE POR PADRÃO DEVE SE AUTO-VALIDAR GARANTINDO SUA CONSISTÊNCIA 
+// UMA ENTIDATE POR PADRÃO DEVE SE AUTO-VALIDAR GARANTINDO SUA CONSISTÊNCIA
 class Customer {
     _id: string;
     _name: string;
@@ -16,18 +16,6 @@ class Customer {
         if (!this._id || this._id.length === 0) throw new Error("ID is required")
     }
     
-    get id(): string {
-        return this._id;
-    }
-
-    get name(): string {
-        return this._name;
-    }
-
-    get address(): string {
-        return this._address;
-    }
-
     changeName(name: string) {
         this._name = name;
         this.validate();
