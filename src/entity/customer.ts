@@ -2,10 +2,10 @@ import Address from "./VOs/address";
 
 // UMA ENTIDATE DE NEGOCIO POR PADRÃO DEVE SE AUTO-VALIDAR GARANTINDO SUA CONSISTÊNCIA
 export default class Customer {
-    _id: string;
-    _name: string;
-    _address!: Address;
-    _active: boolean = false;
+    private _id: string;
+    private _name: string;
+    private _address!: Address;
+    private _active: boolean = false;
 
     constructor(id: string, name: string) {
         this._id = id;
@@ -14,8 +14,8 @@ export default class Customer {
     }
 
     validate() {
-        if (!this._name || this._name.length === 0) throw new Error("Name is required")
         if (!this._id || this._id.length === 0) throw new Error("ID is required")
+        if (!this._name || this._name.length === 0) throw new Error("Name is required")
     }
     
     changeName(name: string) {
@@ -23,15 +23,23 @@ export default class Customer {
         this.validate();
     }
 
-    activate(){
-        if(!this._address || this._address !== undefined) 
+    activate(): void{
+        if(!this._address || this._address === undefined) 
             throw new Error("Address is mandatory to activate a customer")
 
         this._active = true;
     }
 
-    deactivate(){
+    deactivate(): void{
         this._active = false;
+    }
+
+    isActive(): boolean{
+        return this._active;
+    }
+
+    get name(): string{
+        return this._name;
     }
 
     set Address(address: Address){
