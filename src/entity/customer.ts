@@ -1,7 +1,7 @@
-import Address from "./address";
+import Address from "./VOs/address";
 
 // UMA ENTIDATE DE NEGOCIO POR PADRÃO DEVE SE AUTO-VALIDAR GARANTINDO SUA CONSISTÊNCIA
-class Customer {
+export default class Customer {
     _id: string;
     _name: string;
     _address!: Address;
