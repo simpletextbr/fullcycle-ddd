@@ -41,6 +41,10 @@ export default class Customer {
     get name(): string{
         return this._name;
     }
+    
+    get id(): string{
+        return this._id;
+    }
 
     set Address(address: Address){
         this._address = address;

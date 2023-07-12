@@ -22,6 +22,11 @@ describe("Customer unit tests", () => {
         expect(() => { customer.changeName("") }).toThrowError("Name is required");
     });
 
+    it("should return user id", () => {
+        const customer = new Customer("123", "John")
+        expect(customer.id).toBe("123");
+    });
+
     it("should be able to activate an user", () => {
         const customer = new Customer("123", "John");
         const address = new Address("Rua 1", 123, "12345-000", "BH");
