@@ -11,7 +11,7 @@ describe("OrderItem unit test", () => {
     });
 
     it("should throw error when quantity is empty", () => {
-        expect(() => new OrderItem("id", "name", 0, 1, "123")).toThrowError("Quantity is required");
+        expect(() => new OrderItem("id", "name", 0, 1, "123")).toThrowError("Quantity must be greater than 0");
     });
 
     it ("should throw error when price is less than 0", () => {
