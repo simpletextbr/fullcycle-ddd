@@ -19,11 +19,11 @@ describe("Order unit tests", () => {
     it("should calculate total", () => {
         const customer = new Customer("1", "customer 1");
         const customerId = customer.id;
-        const item1 = new OrderItem("1", "item 1", 1, 10);
-        const item2 = new OrderItem("1", "item 2", 1, 20);
-        const item3 = new OrderItem("1", "item 3", 1, 30);
+        const item1 = new OrderItem("1", "item 1", 2, 10, "123");
+        const item2 = new OrderItem("1", "item 2", 2, 20, "123");
+        const item3 = new OrderItem("1", "item 3", 1, 40, "123");
         const order = new Order("1", customerId, [item1, item2, item3]);
 
-        expect(order.total()).toBe(60);
+        expect(order.total()).toBe(100);
     });
 });
