@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from 'jest';
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -92,7 +92,7 @@ const config: Config = {
   // moduleNameMapper: {},
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  // modulePathIgnorePatterns: [],
+  modulePathIgnorePatterns: ["<rootDir>/dist/", "<rootDir>/node_modules/"],
 
   // Activates notifications for test results
   // notify: false,
@@ -176,7 +176,7 @@ const config: Config = {
   // A map from regular expressions to paths to transformers
   transform: {
     "^.+\.(t|j)sx?$": "@swc/jest",
-  },
+  }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
