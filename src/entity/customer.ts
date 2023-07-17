@@ -2,52 +2,52 @@ import Address from "./VOs/address";
 
 // UMA ENTIDATE DE NEGOCIO POR PADRÃO DEVE SE AUTO-VALIDAR GARANTINDO SUA CONSISTÊNCIA
 export default class Customer {
-    private _id: string;
-    private _name: string;
-    private _address!: Address;
-    private _active: boolean = false;
+  private _id: string;
+  private _name: string;
+  private _address!: Address;
+  private _active: boolean = false;
 
-    constructor(id: string, name: string) {
-        this._id = id;
-        this._name = name;
-        this.validate();
-    }
+  constructor(id: string, name: string) {
+    this._id = id;
+    this._name = name;
+    this.validate();
+  }
 
-    validate() {
-        if (!this._id || this._id.length === 0) throw new Error("ID is required")
-        if (!this._name || this._name.length === 0) throw new Error("Name is required")
-    }
-    
-    changeName(name: string) {
-        this._name = name;
-        this.validate();
-    }
+  validate() {
+    if (!this._id || this._id.length === 0) throw new Error("ID is required");
+    if (!this._name || this._name.length === 0)
+      throw new Error("Name is required");
+  }
 
-    activate(): void{
-        if(!this._address || this._address === undefined) 
-            throw new Error("Address is mandatory to activate a customer")
+  changeName(name: string) {
+    this._name = name;
+    this.validate();
+  }
 
-        this._active = true;
-    }
+  activate(): void {
+    if (!this._address || this._address === undefined)
+      throw new Error("Address is mandatory to activate a customer");
 
-    deactivate(): void{
-        this._active = false;
-    }
+    this._active = true;
+  }
 
-    isActive(): boolean{
-        return this._active;
-    }
+  deactivate(): void {
+    this._active = false;
+  }
 
-    get name(): string{
-        return this._name;
-    }
-    
-    get id(): string{
-        return this._id;
-    }
+  isActive(): boolean {
+    return this._active;
+  }
 
-    set Address(address: Address){
-        this._address = address;
-    }
+  get name(): string {
+    return this._name;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  set Address(address: Address) {
+    this._address = address;
+  }
 }
-
