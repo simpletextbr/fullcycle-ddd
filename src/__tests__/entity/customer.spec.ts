@@ -34,7 +34,7 @@ describe("Customer unit tests", () => {
 
         customer.activate()
 
-        expect(customer.isActive()).toBe(false);
+        expect(customer.isActive()).toBe(true);
     });
 
     it("should be able to activate an user", () => {
