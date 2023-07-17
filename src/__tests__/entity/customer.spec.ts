@@ -4,11 +4,11 @@ import Customer from "../../entity/customer";
 describe("Customer unit tests", () => {
 
     it("should throw error when id is empty", () => {
-        expect(() => { new Customer("", "John Doe") }).toThrowError("ID is required");
+        expect(() => new Customer("", "John Doe")).toThrowError("ID is required");
     });
 
     it("should throw error when name is empty", () => {
-        expect(() => { new Customer("123", "") }).toThrowError("Name is required");
+        expect(() => new Customer("123", "")).toThrowError("Name is required");
     });
 
     it("should be able to change name", () => {

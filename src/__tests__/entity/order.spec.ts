@@ -5,15 +5,15 @@ import Order from "../../entity/order";
 describe("Order unit tests", () => {
 
     it("should throw error when id is empty", () => {
-        expect(() => { new Order("", "123", []) }).toThrowError("Id is required");
+        expect(() => new Order("", "123", [])).toThrowError("Id is required");
     });
 
     it("should throw error when customerId is empty", () => {
-        expect(() => { new Order("123", "", []) }).toThrowError("CustomerId is required");
+        expect(() => new Order("123", "", [])).toThrowError("CustomerId is required");
     });
 
     it("should throw error when items is empty", () => {
-        expect(() => { new Order("123", "123", []) }).toThrowError("Itens are required");
+        expect(() => new Order("123", "123", [])).toThrowError("Itens are required");
     });
 
     it("should calculate total", () => {
