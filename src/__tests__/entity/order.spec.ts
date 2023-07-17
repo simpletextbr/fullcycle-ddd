@@ -4,19 +4,19 @@ import Order from "../../entity/order";
 
 describe("Order unit tests", () => {
 
-    it("should throw error when id is empty", () => {
-        expect(() => { new Order("", "123", []) }).toThrowError("Id is required");
+    test("should throw error when id is empty", () => {
+        expect(() => new Order("", "123", [])).toThrowError("Id is required");
     });
 
-    it("should throw error when customerId is empty", () => {
-        expect(() => { new Order("123", "", []) }).toThrowError("CustomerId is required");
+    test("should throw error when customerId is empty", () => {
+        expect(() => new Order("123", "", [])).toThrowError("CustomerId is required");
     });
 
-    it("should throw error when items is empty", () => {
-        expect(() => { new Order("123", "123", []) }).toThrowError("Itens are required");
+    test("should throw error when items is empty", () => {
+        expect(() => new Order("123", "123", [])).toThrowError("Itens are required");
     });
 
-    it("should calculate total", () => {
+    test("should calculate total", () => {
         const customer = new Customer("1", "customer 1");
         const customerId = customer.id;
         const item1 = new OrderItem("1", "item 1", 2, 10, "123");
