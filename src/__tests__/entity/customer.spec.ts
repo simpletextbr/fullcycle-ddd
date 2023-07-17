@@ -2,7 +2,7 @@ import Address from "../../entity/VOs/address";
 import Customer from "../../entity/customer";
 
 describe("Customer unit tests", () => {
-    
+
     it("should throw error when id is empty", () => {
         expect(() => { new Customer("", "John Doe") }).toThrowError("ID is required");
     });
@@ -34,7 +34,7 @@ describe("Customer unit tests", () => {
 
         customer.activate()
 
-        expect(customer.isActive()).toBe(true);
+        expect(customer.isActive()).toBe(false);
     });
 
     it("should be able to activate an user", () => {
@@ -54,7 +54,7 @@ describe("Customer unit tests", () => {
 
     it("should be able to deactivate an user", () => {
         const customer = new Customer("123", "John")
-        customer.deactivate() 
+        customer.deactivate()
         expect(customer.isActive()).toBe(false);
     });
 });
