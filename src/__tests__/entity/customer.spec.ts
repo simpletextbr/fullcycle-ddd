@@ -28,6 +28,11 @@ describe("Customer unit tests", () => {
     expect(customer.id).toBe("123");
   });
 
+  it("should return reward points ", () => {
+    const customer = new Customer("123", "John");
+    expect(customer.rewardPoints).toBe(0);
+  });
+
   it("should be able to activate an user", () => {
     const customer = new Customer("123", "John");
     const address = new Address("Rua 1", 123, "12345-000", "BH");
