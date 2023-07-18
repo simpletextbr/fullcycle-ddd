@@ -13,7 +13,9 @@ export default class OrderService {
       throw new Error("Order must have at least one item");
 
     const order = new Order(uuid(), customer.id, items);
-    customer.giveRewardPoints(order.total() / 2);
+    const rewardsGained = order.total() / 2;
+
+    customer.giveRewardPoints(rewardsGained);
     return order;
   }
 }

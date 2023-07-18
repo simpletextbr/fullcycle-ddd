@@ -18,6 +18,8 @@ export default class Customer {
     if (!this._id || this._id.length === 0) throw new Error("ID is required");
     if (!this._name || this._name.length === 0)
       throw new Error("Name is required");
+    if (this._rewardPoints < 0)
+      throw new Error("Reward points must be greater than or equal to 0");
   }
 
   changeName(name: string) {
@@ -27,6 +29,7 @@ export default class Customer {
 
   giveRewardPoints(points: number) {
     this._rewardPoints += points;
+    this.validate();
   }
 
   activate(): void {

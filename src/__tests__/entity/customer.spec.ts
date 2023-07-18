@@ -65,4 +65,17 @@ describe("Customer unit tests", () => {
     customer.deactivate();
     expect(customer.isActive()).toBe(false);
   });
+
+  it("should be able to give reward points", () => {
+    const customer = new Customer("123", "John");
+    customer.giveRewardPoints(100);
+    expect(customer.rewardPoints).toBe(100);
+  });
+
+  it("should throw error when reward points is less than 0", () => {
+    const customer = new Customer("123", "John");
+    expect(() => {
+      customer.giveRewardPoints(-1);
+    }).toThrowError("Reward points must be greater than or equal to 0");
+  });
 });

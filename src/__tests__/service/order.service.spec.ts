@@ -29,4 +29,12 @@ describe("Order service unit tests", () => {
     expect(customer.rewardPoints).toBe(400);
     expect(order.total()).toBe(800);
   });
+
+  it("should place an order with items", () => {
+    const customer = new Customer("1", "Customer 1");
+
+    expect(() => OrderService.placeOrder(customer, [])).toThrowError(
+      "Order must have at least one item"
+    );
+  });
 });
