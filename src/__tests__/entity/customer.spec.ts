@@ -68,8 +68,11 @@ describe("Customer unit tests", () => {
 
   it("should be able to give reward points", () => {
     const customer = new Customer("123", "John");
+    expect(customer.rewardPoints).toBe(0);
     customer.giveRewardPoints(100);
     expect(customer.rewardPoints).toBe(100);
+    customer.giveRewardPoints(1);
+    expect(customer.rewardPoints).toBe(101);
   });
 
   it("should throw error when reward points is less than 0", () => {
