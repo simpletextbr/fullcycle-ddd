@@ -30,9 +30,9 @@ describe("Product repository unit tests", () => {
     const productCreated = await ProductModel.findOne({ where: { id: "1" } });
 
     expect(productCreated.toJSON()).toStrictEqual({
-      id: "1",
-      name: "Product 1",
-      price: 100,
+      id: product.id,
+      name: product.name,
+      price: product.price,
     });
   });
 
@@ -49,9 +49,9 @@ describe("Product repository unit tests", () => {
     const productFound = await ProductModel.findOne({ where: { id: "1" } });
 
     expect(productFound.toJSON()).toStrictEqual({
-      id: "1",
-      name: "Product 2",
-      price: 200,
+      id: productUpdated.id,
+      name: productUpdated.name,
+      price: productUpdated.price,
     });
   });
 
