@@ -105,14 +105,22 @@ describe("Order repository unit tests", () => {
     const orderRepository = new OrderRepository();
     await orderRepository.create(order);
 
-    const productUpdated = new Product("1", "Product 2", 200);
-    const customerUpdated = new Customer("1", "John Doe 2");
-    const addressUpdated = new Address("1", 456, "54321", "Othertown");
+    const productUpdated = new Product("2", "Product 2", 200);
+    const customerUpdated = new Customer("2", "John Doe 2");
+    const addressUpdated = new Address("2", 456, "54321", "Othertown");
     customerUpdated.Address = addressUpdated;
-    await customerRepository.update(customerUpdated);
-    await productRepository.update(productUpdated);
+    await customerRepository.create(customerUpdated);
+    await productRepository.create(productUpdated);
 
-    const orderUpdated = new Order("1", customerUpdated.id, [orderItem]);
+    const orderItemUpdated = new OrderItem(
+      "1",
+      productUpdated.name,
+      2,
+      productUpdated.price,
+      productUpdated.id
+    );
+
+    const orderUpdated = new Order("1", customerUpdated.id, [orderItemUpdated]);
     await orderRepository.update(orderUpdated);
 
     const orderFound = await OrderModel.findOne({
@@ -126,12 +134,12 @@ describe("Order repository unit tests", () => {
       total: orderUpdated.total(),
       items: [
         {
-          id: orderItem.id,
-          name: orderItem.name,
-          quantity: orderItem.quantity,
-          price: orderItem.price,
-          orderId: orderUpdated.id,
-          productId: orderItem.productId,
+          id: orderItemUpdated.id,
+          name: orderItemUpdated.name,
+          quantity: orderItemUpdated.quantity,
+          price: orderItemUpdated.price,
+          orderId: orderItemUpdated.id,
+          productId: orderItemUpdated.productId,
         },
       ],
     });

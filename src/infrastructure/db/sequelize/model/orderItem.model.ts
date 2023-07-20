@@ -16,7 +16,7 @@ export default class OrderItemModel extends Model {
   declare id: string;
 
   @ForeignKey(() => ProductModel)
-  @Column({ field: "customer_id" })
+  @Column({ field: "product_id" })
   declare productId: string;
 
   @BelongsTo(() => ProductModel)
