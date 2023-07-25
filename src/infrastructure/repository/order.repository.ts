@@ -1,5 +1,6 @@
 import Order from "../../domain/entity/order";
 import IOrderRepository from "../../domain/repository/IOrderRepository";
+import CustomerModel from "../db/sequelize/model/customer.model";
 import OrderModel from "../db/sequelize/model/order.model";
 import OrderItemModel from "../db/sequelize/model/orderItem.model";
 
@@ -22,12 +23,49 @@ export default class OrderRepository implements IOrderRepository {
     );
   }
   async update(entity: Order): Promise<void> {
-    throw new Error("Method not implemented.");
+    const sequelize = OrderModel.sequelize;
+    await sequelize.transaction(async (transaction) => {
+      await OrderModel.update(
+        {
+          customerId: entity.customerId,
+          total: entity.total(),
+        },
+        { where: { id: entity.id }, transaction }
+      );
+      await OrderItemModel.destroy({
+        where: { orderId: entity.id },
+        transaction,
+      });
+      await OrderItemModel.bulkCreate(
+        entity.items.map((item) => ({
+          id: item.id,
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+          productId: item.productId,
+          orderId: entity.id,
+        })),
+        { transaction }
+      );
+    });
   }
   async find(id: string): Promise<Order> {
-    throw new Error("Method not implemented.");
+    const order = await OrderModel.findOne({
+      where: { id },
+      include: [
+        { model: OrderItemModel, as: "items" },
+        { model: CustomerModel, as: "customer" },
+      ],
+    });
+    return order.toJSON();
   }
   async findAll(): Promise<Order[]> {
-    throw new Error("Method not implemented.");
+    const orders = await OrderModel.findAll({
+      include: [
+        { model: OrderItemModel, as: "items" },
+        { model: CustomerModel, as: "customer" },
+      ],
+    });
+    return orders.map((order) => order.toJSON());
   }
 }

@@ -49,9 +49,6 @@ export default class CustomerRepository implements ICustomerRepository {
         customerModel.city
       );
       customer.Address = address;
-      if (customerModel.active) {
-        customer.activate();
-      }
 
       return customer;
     });
