@@ -21,6 +21,18 @@ export default class Order {
     if (this._items.length === 0) throw new Error("Itens are required");
   }
 
+  get id(): string {
+    return this._id;
+  }
+
+  get customerId(): string {
+    return this._customerId;
+  }
+
+  get items(): Array<OrderItem> {
+    return this._items;
+  }
+
   total(): number {
     return this._items.reduce((acc, item) => acc + item.orderItemTotal(), 0);
   }

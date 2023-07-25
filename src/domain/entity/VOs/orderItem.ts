@@ -32,8 +32,24 @@ export default class OrderItem {
       throw new Error("ProductId is required");
   }
 
+  get id(): string {
+    return this._id;
+  }
+
   get price(): number {
     return this._price;
+  }
+
+  get quantity(): number {
+    return this._quantity;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  get productId(): string {
+    return this._productId;
   }
 
   orderItemTotal(): number {

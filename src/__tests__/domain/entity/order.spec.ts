@@ -1,6 +1,6 @@
-import OrderItem from "../../entity/VOs/orderItem";
-import Customer from "../../entity/customer";
-import Order from "../../entity/order";
+import OrderItem from "../../../domain/entity/VOs/orderItem";
+import Customer from "../../../domain/entity/customer";
+import Order from "../../../domain/entity/order";
 
 describe("Order unit tests", () => {
   it("should throw error when id is empty", () => {

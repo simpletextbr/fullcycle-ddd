@@ -1,4 +1,4 @@
-import Address from "../../../entity/VOs/address";
+import Address from "../../../../domain/entity/VOs/address";
 
 describe("Address unit tests", () => {
   it("should return a string representation of the address", () => {

@@ -1,4 +1,4 @@
-import OrderItem from "../../../entity/VOs/orderItem";
+import OrderItem from "../../../../domain/entity/VOs/orderItem";
 
 describe("OrderItem unit test", () => {
   it("should throw error when id is empty", () => {
