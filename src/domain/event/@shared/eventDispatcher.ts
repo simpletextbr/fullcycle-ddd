@@ -10,7 +10,13 @@ export default class EventDispatcher implements IEventDispatcher {
   }
 
   notify(event: IEvent): void {
-    throw new Error("Method not implemented.");
+    const eventName = event.constructor.name;
+
+    if (this.eventHandlers[eventName]) {
+      this.eventHandlers[eventName].forEach((eventHandler) => {
+        eventHandler.handle(event);
+      });
+    }
   }
 
   register(event: string, eventHandler: IEventHandler): void {
@@ -22,10 +28,15 @@ export default class EventDispatcher implements IEventDispatcher {
   }
 
   unregister(event: string, eventHandler: IEventHandler): void {
-    throw new Error("Method not implemented.");
+    if (this.eventHandlers[event]) {
+      const index = this.eventHandlers[event].indexOf(eventHandler);
+      if (index > -1) {
+        this.eventHandlers[event].splice(index, 1);
+      }
+    }
   }
 
   unregisterAll(): void {
-    throw new Error("Method not implemented.");
+    this.eventHandlers = {};
   }
 }
