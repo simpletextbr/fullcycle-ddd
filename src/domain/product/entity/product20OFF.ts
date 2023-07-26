@@ -1,6 +1,6 @@
 import IProduct from "./product.interface";
 
-export default class Product implements IProduct {
+export default class Product20OFF implements IProduct {
   private _id: string;
   private _name: string;
   private _price: number;
@@ -38,6 +38,7 @@ export default class Product implements IProduct {
   }
 
   get price(): number {
-    return this._price;
+    const discount = (this._price * 0.2).toPrecision(2);
+    return Number(this._price) - Number(discount);
   }
 }
