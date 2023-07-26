@@ -17,6 +17,9 @@ export default class Product10OFF implements IProduct {
     if (!this._name || this._name.length === 0)
       throw new Error("Name is required");
     if (this._price < 0) throw new Error("Price cannot be less than 0");
+    if (this._price > 0) {
+      this.applyDiscount();
+    }
   }
 
   changeName(name: string): void {
@@ -29,6 +32,11 @@ export default class Product10OFF implements IProduct {
     this.validate();
   }
 
+  applyDiscount(): void {
+    const discount = (this._price * 0.1).toPrecision(2);
+    this._price = Number(this._price) - Number(discount);
+  }
+
   get id(): string {
     return this._id;
   }
@@ -38,7 +46,6 @@ export default class Product10OFF implements IProduct {
   }
 
   get price(): number {
-    const discount = (this._price * 0.1).toPrecision(2);
-    return Number(this._price) - Number(discount);
+    return this._price;
   }
 }
