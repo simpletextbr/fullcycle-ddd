@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
+import ICustomer from "../entity/ICustomer";
 import Address from "../entity/VOs/address";
 import Customer from "../entity/customer";
-import ICustomer from "../entity/customer.interface";
 
 export default class CustomerFactory {
   public static create(name: string): ICustomer {
