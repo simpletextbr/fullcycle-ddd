@@ -1,6 +1,6 @@
 import IProduct from "./IProduct";
 
-export default class Product implements IProduct {
+export default class Product10OFF implements IProduct {
   private _id: string;
   private _name: string;
   private _price: number;
@@ -17,6 +17,9 @@ export default class Product implements IProduct {
     if (!this._name || this._name.length === 0)
       throw new Error("Name is required");
     if (this._price < 0) throw new Error("Price cannot be less than 0");
+    if (this._price > 0) {
+      this.applyDiscount();
+    }
   }
 
   changeName(name: string): void {
@@ -27,6 +30,11 @@ export default class Product implements IProduct {
   changePrice(price: number): void {
     this._price = price;
     this.validate();
+  }
+
+  applyDiscount(): void {
+    const discount = (this._price * 0.1).toPrecision(2);
+    this._price = Number(this._price) - Number(discount);
   }
 
   get id(): string {
